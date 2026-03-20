@@ -14,6 +14,9 @@
       "default": "./dist/index.js"
     }
   },
+  "peerDependencies": {
+    "@floating-ui/react": ">=0.27.0"
+  },
   "files": [
     "dist",
     "!**/*.tsbuildinfo"

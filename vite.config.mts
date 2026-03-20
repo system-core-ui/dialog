@@ -46,6 +46,8 @@ export default defineConfig(() => ({
         '@emotion/styled',
         '@emotion/react/jsx-runtime',
         /^@thanhdq\//,
+        '@floating-ui/react',
+        '@floating-ui/react-dom',
       ],
     },
   },
@@ -58,6 +60,7 @@ export default defineConfig(() => ({
     globals: true,
     environment: 'jsdom',
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    setupFiles: ['./tests/setup.ts'],
     reporters: ['default'],
     coverage: {
       reportsDirectory: './test-output/vitest/coverage',

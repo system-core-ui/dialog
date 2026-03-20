@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import type { ModalProps } from '../models';
 
-import { trapFocus } from '../helpers';
+import { trapFocus, wasPopoverDismiss } from '../helpers';
 
 import { ModalBackdropStyled, ModalContentStyled } from './styled';
 
@@ -52,9 +52,12 @@ export const Modal = ({
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       // Only close if clicking the backdrop itself, not its children
-      if (e.target === e.currentTarget && !disableBackdropClick) {
-        onClose?.();
-      }
+      if (e.target !== e.currentTarget || disableBackdropClick) return;
+
+      // If a child Popover already handled this event chain, skip
+      if (wasPopoverDismiss()) return;
+
+      onClose?.();
     },
     [disableBackdropClick, onClose],
   );
