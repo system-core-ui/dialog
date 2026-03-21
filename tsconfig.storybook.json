@@ -1,9 +1,23 @@
 {
-  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "out-tsc/storybook",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": ["es2022"],
     "module": "esnext",
     "moduleResolution": "bundler",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022",
+    "customConditions": ["@thanh-libs/source"],
+    "outDir": "out-tsc/storybook",
     "jsx": "preserve"
   },
   "exclude": [
@@ -29,10 +43,5 @@
     {
       "path": "./tsconfig.lib.json"
     }
-  ],
-  "files": [
-    "../../node_modules/@nx/react/typings/styled-jsx.d.ts",
-    "../../node_modules/@nx/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nx/react/typings/image.d.ts"
   ]
 }
