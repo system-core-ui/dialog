@@ -29,5 +29,11 @@
     "dist",
     "!**/*.tsbuildinfo",
     "!**/*.stories.*"
-  ]
+  ],
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npx vitest run",
+      "postbump": "npx vite build"
+    }
+  }
 }

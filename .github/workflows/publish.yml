@@ -64,6 +64,12 @@ jobs:
         run: npx vite build
 
       - name: Publish to npm
-        run: npm publish
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          if [[ "$TAG" == *"-alpha"* ]]; then
+            npm publish --tag alpha
+          else
+            npm publish
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
