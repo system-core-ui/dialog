@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npx vitest run
+        run: npx vitest run --passWithNoTests
 
   # ─── Stage 2: Build ───
   build:

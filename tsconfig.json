@@ -1,4 +1,23 @@
 {
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": ["es2022"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022",
+    "customConditions": ["@thanh-libs/source"]
+  },
   "files": [],
   "include": [],
   "references": [
@@ -8,6 +27,5 @@
     {
       "path": "./tsconfig.storybook.json"
     }
-  ],
-  "extends": "../../tsconfig.base.json"
+  ]
 }
