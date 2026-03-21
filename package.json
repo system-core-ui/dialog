@@ -1,5 +1,5 @@
 {
-  "name": "@thanhdq/dialog",
+  "name": "@thanh-libs/dialog",
   "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -8,17 +8,26 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "@thanhdq/source": "./src/index.ts",
+      "@thanh-libs/source": "./src/index.ts",
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "release": "standard-version",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "peerDependencies": {
     "@floating-ui/react": ">=0.27.0"
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "!**/*.stories.*"
   ]
 }

@@ -1,7 +1,7 @@
 import { CSSObject, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { ThemeSchema } from '@thanhdq/theme';
+import { ThemeSchema } from '@thanh-libs/theme';
 
 import type { ModalSize } from '../models';
 

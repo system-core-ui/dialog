@@ -1,8 +1,8 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
 import * as path from 'path';
+import { defineConfig } from 'vite';
+import dts from 'vite-plugin-dts';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -30,7 +30,7 @@ export default defineConfig(() => ({
     lib: {
       // Could also be a dictionary or array of multiple entry points.
       entry: 'src/index.ts',
-      name: '@thanhdq/dialog',
+      name: '@thanh-libs/dialog',
       fileName: 'index',
       // Change this to the formats you want to support.
       // Don't forget to update your package.json as well.
@@ -45,17 +45,17 @@ export default defineConfig(() => ({
         '@emotion/react',
         '@emotion/styled',
         '@emotion/react/jsx-runtime',
-        /^@thanhdq\//,
+        /^@thanh-libs\//,
         '@floating-ui/react',
         '@floating-ui/react-dom',
       ],
     },
   },
   resolve: {
-    conditions: ['@thanhdq/source'],
+    conditions: ['@thanh-libs/source'],
   },
   test: {
-    name: '@thanhdq/dialog',
+    name: '@thanh-libs/dialog',
     watch: false,
     globals: true,
     environment: 'jsdom',

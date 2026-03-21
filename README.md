@@ -1,18 +1,18 @@
-# @thanhdq/dialog
+# @thanh-libs/dialog
 
 Modal and Portal components for System Core UI.
 
 ## Installation
 
 ```bash
-yarn add @thanhdq/dialog
+yarn add @thanh-libs/dialog
 ```
 
 ## Usage
 
 ```tsx
-import { Modal } from '@thanhdq/dialog';
-import type { ModalSize } from '@thanhdq/dialog';
+import { Modal } from '@thanh-libs/dialog';
+import type { ModalSize } from '@thanh-libs/dialog';
 
 <Modal open={isOpen} onClose={handleClose} size="md">
   <div>Modal content</div>
@@ -34,4 +34,4 @@ Custom dimensions: use `width` and `height` props to override presets.
 
 ## Running unit tests
 
-Run `nx test @thanhdq/dialog` to execute the unit tests via [Vitest](https://vitest.dev/).
+Run `nx test @thanh-libs/dialog` to execute the unit tests via [Vitest](https://vitest.dev/).

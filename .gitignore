@@ -1,0 +1,17 @@
+# Build output
+dist
+
+# Dependencies
+node_modules
+
+# Test output
+test-output
+coverage
+
+# Storybook
+storybook-static
+
+# Misc
+*.tsbuildinfo
+vite.config.*.timestamp*
+vitest.config.*.timestamp*
