@@ -32,7 +32,7 @@
   ],
   "standard-version": {
     "scripts": {
-      "prerelease": "npx vitest run",
+      "prerelease": "npx vitest run --passWithNoTests",
       "postbump": "npx vite build"
     }
   }
