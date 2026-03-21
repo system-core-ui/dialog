@@ -73,3 +73,19 @@ jobs:
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Cleanup alpha versions
+        if: ${{ !contains(github.ref, '-alpha') }}
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          ALPHAS=$(npm view "$PKG_NAME" versions --json 2>/dev/null | node -e "
+            const versions = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+            const alphas = (Array.isArray(versions) ? versions : [versions]).filter(v => v.includes('-alpha'));
+            alphas.forEach(v => console.log(v));
+          ")
+          for VERSION in $ALPHAS; do
+            echo "Unpublishing $PKG_NAME@$VERSION"
+            npm unpublish "$PKG_NAME@$VERSION" || true
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
