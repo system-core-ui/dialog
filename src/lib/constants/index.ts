@@ -18,3 +18,9 @@ export const MODAL_SIZES: Record<ModalSize, { width: string; maxHeight: string }
   xl:         { width: '1024px', maxHeight: '90dvh' },
   fullscreen: { width: '100dvw', maxHeight: '100dvh' },
 };
+
+/** Default width/height for Drawer panels */
+export const DRAWER_DEFAULT_SIZE = 320;
+
+/** Default z-index for Drawer (below Modal) */
+export const DRAWER_Z_INDEX = 1200;
