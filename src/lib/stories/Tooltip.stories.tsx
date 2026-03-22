@@ -274,3 +274,78 @@ export const RichContent: StoryObj = {
   name: 'Rich Content',
   render: () => <RichContentStory />,
 };
+
+// ─── Playground ──────────────────────────────────────────
+
+const PlaygroundStory = (args: {
+  placement: Placement;
+  offset: number;
+  flip: boolean;
+  arrow: boolean;
+  openDelay: number;
+  closeDelay: number;
+}) => (
+  <div style={{ padding: 200, display: 'flex', justifyContent: 'center' }}>
+    <Tooltip
+      placement={args.placement}
+      offset={args.offset}
+      flip={args.flip}
+      arrow={args.arrow}
+      arrowFill="#222"
+      openDelay={args.openDelay}
+      closeDelay={args.closeDelay}
+      trigger={<StoryButton>Hover me</StoryButton>}
+    >
+      <div style={tooltipStyle}>
+        Playground Tooltip — chỉnh Controls bên dưới.
+      </div>
+    </Tooltip>
+  </div>
+);
+
+export const Playground: StoryObj<{
+  placement: Placement;
+  offset: number;
+  flip: boolean;
+  arrow: boolean;
+  openDelay: number;
+  closeDelay: number;
+}> = {
+  name: 'Playground',
+  argTypes: {
+    placement: {
+      control: { type: 'select' },
+      options: PLACEMENTS,
+      description: 'Placement relative to trigger',
+    },
+    offset: {
+      control: { type: 'number', min: 0, max: 30 },
+      description: 'Spacing from trigger (px)',
+    },
+    flip: {
+      control: 'boolean',
+      description: 'Auto-flip when viewport overflows',
+    },
+    arrow: {
+      control: 'boolean',
+      description: 'Show arrow indicator',
+    },
+    openDelay: {
+      control: { type: 'number', min: 0, max: 2000, step: 50 },
+      description: 'Delay before showing (ms)',
+    },
+    closeDelay: {
+      control: { type: 'number', min: 0, max: 2000, step: 50 },
+      description: 'Delay before hiding (ms)',
+    },
+  },
+  args: {
+    placement: 'top',
+    offset: 6,
+    flip: true,
+    arrow: true,
+    openDelay: 300,
+    closeDelay: 150,
+  },
+  render: (args) => <PlaygroundStory {...args} />,
+};

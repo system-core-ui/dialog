@@ -58,35 +58,36 @@ const BasicStory = () => {
 // ─── Placements ──────────────────────────────────────────
 
 const PlacementsStory = () => {
-  const [placement, setPlacement] = useState<DrawerPlacement | null>(null);
+  const [active, setActive] = useState<DrawerPlacement | null>(null);
 
   return (
     <div style={{ padding: 32, display: 'flex', gap: 8 }}>
       {(['left', 'right', 'top', 'bottom'] as DrawerPlacement[]).map((p) => (
-        <StoryButton key={p} onClick={() => setPlacement(p)}>
+        <StoryButton key={p} onClick={() => setActive(p)}>
           {p}
         </StoryButton>
       ))}
 
-      {placement && (
+      {(['left', 'right', 'top', 'bottom'] as DrawerPlacement[]).map((p) => (
         <Drawer
-          open
-          placement={placement}
-          onClose={() => setPlacement(null)}
-          width={placement === 'left' || placement === 'right' ? 320 : undefined}
-          height={placement === 'top' || placement === 'bottom' ? 280 : undefined}
+          key={p}
+          open={active === p}
+          placement={p}
+          onClose={() => setActive(null)}
+          width={p === 'left' || p === 'right' ? 320 : undefined}
+          height={p === 'top' || p === 'bottom' ? 280 : undefined}
         >
           <div style={drawerContentStyle}>
             <div style={drawerHeaderStyle}>
-              <h2 style={{ margin: 0, fontSize: 18 }}>Placement: {placement}</h2>
-              <StoryButtonSecondary onClick={() => setPlacement(null)}>✕</StoryButtonSecondary>
+              <h2 style={{ margin: 0, fontSize: 18 }}>Placement: {p}</h2>
+              <StoryButtonSecondary onClick={() => setActive(null)}>✕</StoryButtonSecondary>
             </div>
             <p style={{ color: '#666' }}>
-              Drawer mở từ hướng <strong>{placement}</strong>.
+              Drawer mở từ hướng <strong>{p}</strong>.
             </p>
           </div>
         </Drawer>
-      )}
+      ))}
     </div>
   );
 };
@@ -371,4 +372,86 @@ export const WithPopover: StoryObj = {
 export const WithTooltip: StoryObj = {
   name: 'With Tooltip',
   render: () => <WithTooltipStory />,
+};
+
+// ─── Playground ──────────────────────────────────────────
+
+const PlaygroundStory = (args: {
+  placement: DrawerPlacement;
+  width: number;
+  height: number;
+  disableBackdropClick: boolean;
+  disableEscapeKey: boolean;
+}) => {
+  const [open, setOpen] = useState(false);
+  const isHorizontal = args.placement === 'left' || args.placement === 'right';
+
+  return (
+    <div style={{ padding: 32 }}>
+      <StoryButton onClick={() => setOpen(true)}>
+        Open Playground Drawer
+      </StoryButton>
+
+      <Drawer
+        open={open}
+        onClose={() => setOpen(false)}
+        placement={args.placement}
+        width={isHorizontal ? args.width : undefined}
+        height={!isHorizontal ? args.height : undefined}
+        disableBackdropClick={args.disableBackdropClick}
+        disableEscapeKey={args.disableEscapeKey}
+      >
+        <div style={drawerContentStyle}>
+          <div style={drawerHeaderStyle}>
+            <h2 style={{ margin: 0, fontSize: 18 }}>Playground Drawer</h2>
+            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
+          </div>
+          <p style={{ color: '#666', lineHeight: 1.6 }}>
+            Thay đổi Controls ở panel dưới để test các props.
+          </p>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const Playground: StoryObj<{
+  placement: DrawerPlacement;
+  width: number;
+  height: number;
+  disableBackdropClick: boolean;
+  disableEscapeKey: boolean;
+}> = {
+  name: 'Playground',
+  argTypes: {
+    placement: {
+      control: { type: 'select' },
+      options: ['left', 'right', 'top', 'bottom'],
+      description: 'Side to slide in from',
+    },
+    width: {
+      control: { type: 'number', min: 100, max: 800 },
+      description: 'Width for left/right placement (px)',
+    },
+    height: {
+      control: { type: 'number', min: 100, max: 600 },
+      description: 'Height for top/bottom placement (px)',
+    },
+    disableBackdropClick: {
+      control: 'boolean',
+      description: 'Disable closing on backdrop click',
+    },
+    disableEscapeKey: {
+      control: 'boolean',
+      description: 'Disable closing on ESC key',
+    },
+  },
+  args: {
+    placement: 'right',
+    width: 320,
+    height: 280,
+    disableBackdropClick: false,
+    disableEscapeKey: false,
+  },
+  render: (args) => <PlaygroundStory {...args} />,
 };
