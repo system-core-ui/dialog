@@ -61,6 +61,9 @@ export default defineConfig(() => ({
     environment: 'jsdom',
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     setupFiles: ['./tests/setup.ts'],
+    deps: {
+      external: [/^@thanh-libs\//],
+    },
     reporters: ['default'],
     coverage: {
       reportsDirectory: './test-output/vitest/coverage',
