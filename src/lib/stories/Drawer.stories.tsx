@@ -7,7 +7,6 @@ import { Tooltip } from '../Tooltip';
 import type { DrawerPlacement, DrawerCloseButtonPlacement } from '../models';
 import {
   StoryButton,
-  StoryButtonSecondary,
   StoryCard,
   StoryTitle,
   StoryText,
@@ -20,14 +19,7 @@ const drawerContentStyle: React.CSSProperties = {
   padding: 24,
 };
 
-const drawerHeaderStyle: React.CSSProperties = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: 16,
-  paddingBottom: 16,
-  borderBottom: '1px solid #eee',
-};
+
 
 // ─── Basic ───────────────────────────────────────────────
 
@@ -105,10 +97,7 @@ const CustomSizeStory = () => {
         width={500}
       >
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Custom Width: 500px</h2>
-            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Custom Width: 500px</h2>
           <p style={{ color: '#666' }}>
             Drawer với width tùy chỉnh = 500px từ bên phải.
           </p>
@@ -149,10 +138,7 @@ const InsideModalStory = () => {
             width={350}
           >
             <div style={drawerContentStyle}>
-              <div style={drawerHeaderStyle}>
-                <h2 style={{ margin: 0, fontSize: 18 }}>Drawer trong Modal</h2>
-                <StoryButtonSecondary onClick={() => setDrawerOpen(false)}>✕</StoryButtonSecondary>
-              </div>
+              <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer trong Modal</h2>
               <p style={{ color: '#666', lineHeight: 1.6 }}>
                 ESC chỉ đóng Drawer này. Modal vẫn mở.
                 Click vùng xám chỉ đóng Drawer, không đóng Modal.
@@ -186,10 +172,7 @@ const NestedDrawersStory = () => {
 
       <Drawer open={drawer1} onClose={() => setDrawer1(false)} placement="left" width={350}>
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Drawer 1 (Left)</h2>
-            <StoryButtonSecondary onClick={() => setDrawer1(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer 1 (Left)</h2>
           <p style={{ color: '#666', lineHeight: 1.6 }}>
             Đây là Drawer cấp 1. Bấm nút bên dưới để mở Drawer lồng bên trong.
           </p>
@@ -200,10 +183,7 @@ const NestedDrawersStory = () => {
 
           <Drawer open={drawer2} onClose={() => setDrawer2(false)} placement="right" width={320}>
             <div style={drawerContentStyle}>
-              <div style={drawerHeaderStyle}>
-                <h2 style={{ margin: 0, fontSize: 18 }}>Drawer 2 (Right)</h2>
-                <StoryButtonSecondary onClick={() => setDrawer2(false)}>✕</StoryButtonSecondary>
-              </div>
+              <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer 2 (Right)</h2>
               <p style={{ color: '#666', lineHeight: 1.6 }}>
                 Đây là Drawer cấp 2 lồng trong Drawer 1.
                 ESC chỉ đóng Drawer này, Drawer 1 vẫn mở.
@@ -215,10 +195,7 @@ const NestedDrawersStory = () => {
 
               <Drawer open={drawer3} onClose={() => setDrawer3(false)} placement="bottom" height={250}>
                 <div style={drawerContentStyle}>
-                  <div style={drawerHeaderStyle}>
-                    <h2 style={{ margin: 0, fontSize: 18 }}>Drawer 3 (Bottom)</h2>
-                    <StoryButtonSecondary onClick={() => setDrawer3(false)}>✕</StoryButtonSecondary>
-                  </div>
+                  <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer 3 (Bottom)</h2>
                   <p style={{ color: '#666', lineHeight: 1.6 }}>
                     Drawer cấp 3! ESC chỉ đóng cái này.
                     Drawer 2 và 1 vẫn mở.
@@ -255,10 +232,7 @@ const WithPopoverStory = () => {
 
       <Drawer open={open} onClose={() => setOpen(false)} placement="right" width={380}>
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Drawer + Popover</h2>
-            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer + Popover</h2>
           <p style={{ color: '#666', lineHeight: 1.6 }}>
             Click ngoài Popover chỉ đóng Popover, KHÔNG đóng Drawer.
             ESC cũng chỉ đóng Popover trước.
@@ -304,10 +278,7 @@ const WithTooltipStory = () => {
 
       <Drawer open={open} onClose={() => setOpen(false)} placement="right" width={350}>
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Drawer + Tooltip</h2>
-            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Drawer + Tooltip</h2>
           <p style={{ color: '#666', lineHeight: 1.6 }}>
             Tooltip hoạt động bình thường bên trong Drawer.
           </p>
