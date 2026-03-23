@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0-alpha.2](https://github.com/qthan1004/react-lib-workspace/compare/v0.1.0-alpha.1...v0.1.0-alpha.2) (2026-03-23)
+
+
+### Bug Fixes
+
+* add all missing devDependencies for standalone CI ([f256473](https://github.com/qthan1004/react-lib-workspace/commit/f2564732bdb9cf8a69eae947c958ab022f8b63bb))
+
 ## [0.1.0-alpha.1](https://github.com/qthan1004/react-lib-workspace/compare/v0.1.0-alpha.0...v0.1.0-alpha.1) (2026-03-23)
 
 
