@@ -32,6 +32,8 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   keepMounted?: boolean;
   /** Portal container */
   container?: Element | null;
+  /** Hide the default close button (default: false) */
+  hideCloseButton?: boolean;
 }
 
 export interface PopoverProps {
@@ -124,6 +126,8 @@ export interface TooltipProps {
 
 export type DrawerPlacement = 'left' | 'right' | 'top' | 'bottom';
 
+export type DrawerCloseButtonPlacement = 'inside' | 'outside' | 'none';
+
 export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   /** Whether drawer is visible */
   open: boolean;
@@ -145,4 +149,6 @@ export interface DrawerProps extends HTMLAttributes<HTMLDivElement> {
   zIndex?: number;
   /** Portal container */
   container?: Element | null;
+  /** Close button placement: 'inside' (default), 'outside', or 'none' to hide */
+  closeButtonPlacement?: DrawerCloseButtonPlacement;
 }

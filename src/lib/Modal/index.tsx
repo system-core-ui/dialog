@@ -8,6 +8,8 @@ import { ModalBackdropStyled, ModalContentStyled } from './styled';
 
 import { Portal } from '../Portal';
 
+import { CloseButton } from '../shared/CloseButton';
+
 /**
  * Modal — full-screen overlay with centered content.
  *
@@ -19,6 +21,7 @@ import { Portal } from '../Portal';
  * - aria-modal + role="dialog" (WCAG 2.2 — SC 4.1.2)
  * - Body scroll lock when open
  * - keepMounted option for animation support
+ * - Built-in close button (top-right, hideable)
  */
 export const Modal = ({
   open,
@@ -32,6 +35,7 @@ export const Modal = ({
   zIndex,
   keepMounted = false,
   container,
+  hideCloseButton = false,
   ...rest
 }: ModalProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -126,6 +130,9 @@ export const Modal = ({
           aria-modal="true"
           tabIndex={-1}
         >
+          {!hideCloseButton && onClose && (
+            <CloseButton onClick={onClose} />
+          )}
           {children}
         </ModalContentStyled>
       </ModalBackdropStyled>
@@ -135,3 +142,4 @@ export const Modal = ({
 
 Modal.displayName = 'Modal';
 export default Modal;
+

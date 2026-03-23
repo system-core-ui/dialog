@@ -23,7 +23,8 @@
     "release:major": "standard-version --release-as major"
   },
   "peerDependencies": {
-    "@floating-ui/react": ">=0.27.0"
+    "@floating-ui/react": ">=0.27.0",
+    "@thanh-libs/button": ">=0.0.1"
   },
   "files": [
     "dist",

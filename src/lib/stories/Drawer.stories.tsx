@@ -4,7 +4,7 @@ import { Drawer } from '../Drawer';
 import { Modal } from '../Modal';
 import { Popover } from '../Popover';
 import { Tooltip } from '../Tooltip';
-import type { DrawerPlacement } from '../models';
+import type { DrawerPlacement, DrawerCloseButtonPlacement } from '../models';
 import {
   StoryButton,
   StoryButtonSecondary,
@@ -42,12 +42,10 @@ const BasicStory = () => {
 
       <Drawer open={open} onClose={() => setOpen(false)}>
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Basic Drawer</h2>
-            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Basic Drawer</h2>
           <p style={{ color: '#666', lineHeight: 1.6 }}>
             Drawer mặc định mở từ bên trái. Click backdrop hoặc ESC để đóng.
+            Nút ✕ mặc định ở góc trên phải.
           </p>
         </div>
       </Drawer>
@@ -78,10 +76,7 @@ const PlacementsStory = () => {
           height={p === 'top' || p === 'bottom' ? 280 : undefined}
         >
           <div style={drawerContentStyle}>
-            <div style={drawerHeaderStyle}>
-              <h2 style={{ margin: 0, fontSize: 18 }}>Placement: {p}</h2>
-              <StoryButtonSecondary onClick={() => setActive(null)}>✕</StoryButtonSecondary>
-            </div>
+            <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Placement: {p}</h2>
             <p style={{ color: '#666' }}>
               Drawer mở từ hướng <strong>{p}</strong>.
             </p>
@@ -382,6 +377,7 @@ const PlaygroundStory = (args: {
   height: number;
   disableBackdropClick: boolean;
   disableEscapeKey: boolean;
+  closeButtonPlacement: DrawerCloseButtonPlacement;
 }) => {
   const [open, setOpen] = useState(false);
   const isHorizontal = args.placement === 'left' || args.placement === 'right';
@@ -400,12 +396,10 @@ const PlaygroundStory = (args: {
         height={!isHorizontal ? args.height : undefined}
         disableBackdropClick={args.disableBackdropClick}
         disableEscapeKey={args.disableEscapeKey}
+        closeButtonPlacement={args.closeButtonPlacement}
       >
         <div style={drawerContentStyle}>
-          <div style={drawerHeaderStyle}>
-            <h2 style={{ margin: 0, fontSize: 18 }}>Playground Drawer</h2>
-            <StoryButtonSecondary onClick={() => setOpen(false)}>✕</StoryButtonSecondary>
-          </div>
+          <h2 style={{ margin: 0, fontSize: 18, paddingRight: 32 }}>Playground Drawer</h2>
           <p style={{ color: '#666', lineHeight: 1.6 }}>
             Thay đổi Controls ở panel dưới để test các props.
           </p>
@@ -421,6 +415,7 @@ export const Playground: StoryObj<{
   height: number;
   disableBackdropClick: boolean;
   disableEscapeKey: boolean;
+  closeButtonPlacement: DrawerCloseButtonPlacement;
 }> = {
   name: 'Playground',
   argTypes: {
@@ -445,6 +440,11 @@ export const Playground: StoryObj<{
       control: 'boolean',
       description: 'Disable closing on ESC key',
     },
+    closeButtonPlacement: {
+      control: { type: 'select' },
+      options: ['inside', 'outside', 'none'],
+      description: 'Close button placement',
+    },
   },
   args: {
     placement: 'right',
@@ -452,6 +452,8 @@ export const Playground: StoryObj<{
     height: 280,
     disableBackdropClick: false,
     disableEscapeKey: false,
+    closeButtonPlacement: 'inside',
   },
   render: (args) => <PlaygroundStory {...args} />,
 };
+

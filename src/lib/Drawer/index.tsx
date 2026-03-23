@@ -8,6 +8,8 @@ import { DrawerBackdropStyled, DrawerContentStyled } from './styled';
 
 import { Portal } from '../Portal';
 
+import { CloseButton } from '../shared/CloseButton';
+
 /**
  * Drawer — slide-in panel anchored to a screen edge.
  *
@@ -19,7 +21,7 @@ import { Portal } from '../Portal';
  * - aria-modal + role="dialog" (WCAG 2.2 — SC 4.1.2)
  * - Body scroll lock when open
  * - Slide animation from left/right/top/bottom
- * - keepMounted option for animation support
+ * - Built-in close button (inside/outside/none)
  * - Works safely nested inside Modal or other Drawers
  *
  * @example
@@ -40,6 +42,7 @@ export const Drawer = ({
   disableEscapeKey = false,
   zIndex,
   container,
+  closeButtonPlacement = 'inside',
   ...rest
 }: DrawerProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -113,6 +116,30 @@ export const Drawer = ({
     };
   }, [open, handleKeyDown]);
 
+  // Close button — inside the drawer panel
+  const renderInsideCloseButton = () => {
+    if (closeButtonPlacement !== 'inside' || !onClose) return null;
+    return <CloseButton onClick={onClose} />;
+  };
+
+  // Close button — outside the drawer panel (on the opposite edge)
+  // Rendered as sibling of DrawerContentStyled to avoid overflow clipping
+  const renderOutsideCloseButton = () => {
+    if (closeButtonPlacement !== 'outside' || !onClose) return null;
+
+    const isHorizontal = placement === 'left' || placement === 'right';
+    const drawerSize = isHorizontal ? (width ?? undefined) : (height ?? undefined);
+
+    return (
+      <CloseButton
+        onClick={onClose}
+        fixed
+        placement={placement}
+        drawerSize={drawerSize}
+      />
+    );
+  };
+
   // Always render the shell so CSS slide transitions work.
   // Only render children content when open.
 
@@ -134,11 +161,15 @@ export const Drawer = ({
           aria-modal="true"
           tabIndex={-1}
         >
+          {renderInsideCloseButton()}
           {open && children}
         </DrawerContentStyled>
+        {renderOutsideCloseButton()}
       </DrawerBackdropStyled>
     </Portal>
   );
 };
 
 Drawer.displayName = 'Drawer';
+
+

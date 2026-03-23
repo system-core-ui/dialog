@@ -179,6 +179,7 @@ const PlaygroundStory = (args: {
   disableBackdropClick: boolean;
   disableEscapeKey: boolean;
   keepMounted: boolean;
+  hideCloseButton: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -196,6 +197,7 @@ const PlaygroundStory = (args: {
         disableBackdropClick={args.disableBackdropClick}
         disableEscapeKey={args.disableEscapeKey}
         keepMounted={args.keepMounted}
+        hideCloseButton={args.hideCloseButton}
       >
         <StoryCard style={{ minWidth: 'unset', width: '100%', boxSizing: 'border-box' }}>
           <StoryTitle>Playground Modal</StoryTitle>
@@ -249,6 +251,7 @@ export const Playground: StoryObj<{
   disableBackdropClick: boolean;
   disableEscapeKey: boolean;
   keepMounted: boolean;
+  hideCloseButton: boolean;
 }> = {
   name: 'Playground',
   argTypes: {
@@ -277,6 +280,10 @@ export const Playground: StoryObj<{
       control: 'boolean',
       description: 'Keep modal DOM node when closed',
     },
+    hideCloseButton: {
+      control: 'boolean',
+      description: 'Hide the default close button',
+    },
   },
   args: {
     size: 'sm',
@@ -285,6 +292,8 @@ export const Playground: StoryObj<{
     disableBackdropClick: false,
     disableEscapeKey: false,
     keepMounted: false,
+    hideCloseButton: false,
   },
   render: (args) => <PlaygroundStory {...args} />,
 };
+
