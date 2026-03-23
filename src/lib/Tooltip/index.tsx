@@ -13,6 +13,7 @@ import {
   useInteractions,
   FloatingPortal,
   FloatingArrow,
+  safePolygon,
 } from '@floating-ui/react';
 
 import type { TooltipProps } from '../models';
@@ -29,7 +30,7 @@ import { useFloatingPosition } from '../hooks';
  * - Auto-flip when viewport overflows
  * - Optional arrow indicator
  * - Pure wrapper — no visual styling, bring your own className/style
- * - WCAG: role="tooltip"
+ * - WCAG: role="tooltip", ESC to dismiss, hoverable content (SC 1.4.13)
  *
  * @example
  * ```tsx
@@ -96,6 +97,9 @@ export const Tooltip = ({
   const hover = useHover(context, {
     delay: { open: openDelay, close: closeDelay },
     move: false,
+    // WCAG 2.2 SC 1.4.13 — tooltip content must be hoverable
+    // safePolygon creates a safe zone between trigger and floating element
+    handleClose: safePolygon(),
   });
   const focus = useFocus(context);
   const dismiss = useDismiss(context);
