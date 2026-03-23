@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0-alpha.3](https://github.com/qthan1004/react-lib-workspace/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2026-03-23)
+
+
+### Bug Fixes
+
+* skip @thanh-libs/source resolve condition in CI ([f37cb59](https://github.com/qthan1004/react-lib-workspace/commit/f37cb59cd01e9d7a1f342a4762c723424db0fe9c))
+
 ## [0.1.0-alpha.2](https://github.com/qthan1004/react-lib-workspace/compare/v0.1.0-alpha.1...v0.1.0-alpha.2) (2026-03-23)
 
 
