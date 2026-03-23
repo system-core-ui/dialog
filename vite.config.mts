@@ -4,6 +4,8 @@ import * as path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
+const isCI = process.env['CI'] === 'true';
+
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/libs/dialog',
@@ -52,7 +54,7 @@ export default defineConfig(() => ({
     },
   },
   resolve: {
-    conditions: ['@thanh-libs/source'],
+    conditions: isCI ? [] : ['@thanh-libs/source'],
   },
   test: {
     name: '@thanh-libs/dialog',
