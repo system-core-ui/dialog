@@ -61,10 +61,8 @@ export default defineConfig(() => ({
     environment: 'jsdom',
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     setupFiles: ['./tests/setup.ts'],
-    server: {
-      deps: {
-        external: [/^@thanh-libs\//],
-      },
+    alias: {
+      '@thanh-libs/button': path.join(import.meta.dirname, 'tests/__mocks__/button.tsx'),
     },
     reporters: ['default'],
     coverage: {
