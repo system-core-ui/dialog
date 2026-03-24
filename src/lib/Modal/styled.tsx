@@ -51,6 +51,25 @@ export const ModalContentStyled = styled.div<ModalContentProps>(
     const preset = MODAL_SIZES[ownerSize];
     const isFullscreen = ownerSize === 'fullscreen';
 
+    // Fullscreen: match MUI pattern — fill viewport completely
+    if (isFullscreen && !ownerWidth && !ownerHeight) {
+      return {
+        position: 'relative',
+        outline: 'none',
+        boxSizing: 'border-box',
+        overflowY: 'auto',
+        margin: 0,
+        width: '100%',
+        maxWidth: '100%',
+        height: '100%',
+        maxHeight: 'none',
+        borderRadius: 0,
+        transform: ownerOpen ? 'scale(1)' : 'scale(0.95)',
+        opacity: ownerOpen ? 1 : 0,
+        transition: `transform ${ANIMATION_DURATION}ms ease, opacity ${ANIMATION_DURATION}ms ease`,
+      };
+    }
+
     return {
       position: 'relative',
       outline: 'none',
@@ -59,17 +78,12 @@ export const ModalContentStyled = styled.div<ModalContentProps>(
 
       // Width: custom > preset
       width: ownerWidth ? normalizeUnit(ownerWidth) : preset.width,
-      maxWidth: isFullscreen ? undefined : '95dvw',
+      maxWidth: '95dvw',
 
       // Height: custom > preset maxHeight
       ...(ownerHeight
         ? { height: normalizeUnit(ownerHeight) }
         : { maxHeight: preset.maxHeight }),
-
-      // Fullscreen: no border radius, fill viewport
-      ...(isFullscreen && !ownerWidth && !ownerHeight
-        ? { height: '100dvh', borderRadius: 0 }
-        : {}),
 
       // Animation
       transform: ownerOpen ? 'scale(1)' : 'scale(0.95)',
