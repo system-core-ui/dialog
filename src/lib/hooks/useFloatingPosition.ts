@@ -48,6 +48,9 @@ export interface UseFloatingPositionOptions {
 
   /** Fixed height for floating element — omit for auto height */
   height?: number | string;
+
+  /** Node ID for FloatingTree */
+  nodeId?: string;
 }
 
 export interface UseFloatingPositionReturn {
@@ -111,6 +114,7 @@ export function useFloatingPosition(
     arrow: enableArrow = false,
     width,
     height,
+    nodeId,
   } = options;
 
   const arrowRef = useRef<SVGSVGElement | null>(null);
@@ -144,6 +148,7 @@ export function useFloatingPosition(
     useFloating({
       open,
       onOpenChange,
+      nodeId,
       placement: desiredPlacement,
       middleware,
       whileElementsMounted: autoUpdate,
