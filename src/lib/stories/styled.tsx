@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { pxToRem } from '@thanh-libs/utils';
 
 export const StoryButton = styled.button(({ theme }) => ({
   padding: `${theme.spacing?.medium ?? '0.75rem'} ${theme.spacing?.large ?? '1rem'}`,
@@ -16,7 +17,7 @@ export const StoryButton = styled.button(({ theme }) => ({
 export const StoryButtonSecondary = styled.button(({ theme }) => ({
   padding: `${theme.spacing?.small ?? '0.5rem'} ${theme.spacing?.large ?? '1rem'}`,
   borderRadius: theme.shape?.borderRadius ?? 6,
-  border: `1px solid ${theme.palette?.divider ?? '#ddd'}`,
+  border: `${pxToRem(1)} solid ${theme.palette?.divider ?? '#ddd'}`,
   background: theme.palette?.common?.white ?? 'white',
   cursor: 'pointer',
   fontWeight: 500,
@@ -46,7 +47,7 @@ export const StoryText = styled.p(({ theme }) => ({
 
 export const StoryInput = styled.input(({ theme }) => ({
   padding: `${theme.spacing?.small ?? '0.5rem'} ${theme.spacing?.medium ?? '0.75rem'}`,
-  border: `1px solid ${theme.palette?.divider ?? '#ddd'}`,
+  border: `${pxToRem(1)} solid ${theme.palette?.divider ?? '#ddd'}`,
   borderRadius: theme.shape?.borderRadius ?? 6,
   fontSize: theme.typography?.body?.fontSize ?? 14,
   fontFamily: theme.font?.fontFamily ?? 'inherit',
@@ -58,7 +59,7 @@ export const StoryInput = styled.input(({ theme }) => ({
 
 export const StoryTextarea = styled.textarea(({ theme }) => ({
   padding: `${theme.spacing?.small ?? '0.5rem'} ${theme.spacing?.medium ?? '0.75rem'}`,
-  border: `1px solid ${theme.palette?.divider ?? '#ddd'}`,
+  border: `${pxToRem(1)} solid ${theme.palette?.divider ?? '#ddd'}`,
   borderRadius: theme.shape?.borderRadius ?? 6,
   fontSize: theme.typography?.body?.fontSize ?? 14,
   fontFamily: theme.font?.fontFamily ?? 'inherit',

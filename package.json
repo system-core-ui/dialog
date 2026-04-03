@@ -30,7 +30,8 @@
     "@emotion/styled": ">=11",
     "@floating-ui/react": ">=0.27.0",
     "@thanh-libs/theme": "*",
-    "@thanh-libs/button": "*"
+    "@thanh-libs/button": "*",
+    "@thanh-libs/utils": "*"
   },
   "files": [
     "dist",

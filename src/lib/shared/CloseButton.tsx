@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 
 import { IconButton } from '@thanh-libs/button';
+import { pxToRem } from '@thanh-libs/utils';
 
 import type { DrawerPlacement } from '../models';
 
@@ -40,13 +41,13 @@ const getFixedPosition = (
 
   switch (placement) {
     case 'left':
-      return { top: 8, left: `calc(${size} + 8px)` };
+      return { top: 8, left: `calc(${size} + ${pxToRem(8)})` };
     case 'right':
-      return { top: 8, right: `calc(${size} + 8px)` };
+      return { top: 8, right: `calc(${size} + ${pxToRem(8)})` };
     case 'top':
-      return { top: `calc(${size} + 8px)`, right: 8 };
+      return { top: `calc(${size} + ${pxToRem(8)})`, right: 8 };
     case 'bottom':
-      return { bottom: `calc(${size} + 8px)`, right: 8 };
+      return { bottom: `calc(${size} + ${pxToRem(8)})`, right: 8 };
   }
 };
 
